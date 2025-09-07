@@ -428,8 +428,8 @@
       }
     });
    
-  
-  loopBtn.addEventListener("click", () => {
+  // Loop functionality
+loopBtn.addEventListener("click", () => {
   isLooping = !isLooping;
   loopBtn.classList.toggle("active", isLooping); // ✅ toggles green on/off
 
@@ -439,16 +439,8 @@
     audio.loop = false;
   }
 });
-
-    // Autoplay next song when one ends (loop OFF)
-    audio.addEventListener("ended", () => {
-      if (!isLooping) {
-        loadSong(currentSongIndex + 1);
-      }
-    });
-  // Start with first song
-  loadSong(currentSongIndex);
   </script>
 </body>
 </html>
+
 
