@@ -426,26 +426,18 @@
         loadSong(currentSongIndex + 1);  // Normal behavior if queue is empty
       }
     });
-
+   
   
-    // Loop functionality
-    loopBtn.addEventListener("click", () => {
-      isLooping = !isLooping;
-      loopBtn.classList.toggle("active", isLooping); // visual toggle
+  loopBtn.addEventListener("click", () => {
+  isLooping = !isLooping;
+  loopBtn.classList.toggle("active", isLooping); // ✅ toggles green on/off
 
-      if (isLooping) {
-        audio.addEventListener("ended", () => {
-          audio.currentTime = 0; // Start song over
-          audio.play();
-        });
-      } else {
-        audio.removeEventListener("ended", () => {
-          audio.currentTime = 0;
-          audio.play();
-        });
-        audio.addEventListener("ended", () => loadSong(currentSongIndex + 1));
-      }
-    });
+  if (isLooping) {
+    audio.loop = true; // 🔥 much simpler than adding listeners
+  } else {
+    audio.loop = false;
+  }
+});
 
     // Autoplay next song when one ends (loop OFF)
     audio.addEventListener("ended", () => {
@@ -458,8 +450,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
