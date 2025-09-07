@@ -27,7 +27,6 @@
       color: #ffffff;
     }
 
-    /* Album cover with both images */
     .cover {
       position: relative;
       width: 300px;
@@ -44,7 +43,6 @@
       display: block;
     }
 
-    /* Leo text above cover */
     .leo-text {
       display: block;
       margin: 10px auto 10px;
@@ -84,11 +82,6 @@
       align-items: center;
       gap: 20px;
       padding: 10px 0;
-      background: transparent;
-      backdrop-filter: none;
-      border-radius: 0;
-      border: none;
-      box-shadow: none;
     }
 
     .control-button-dark {
@@ -103,7 +96,6 @@
       align-items: center;
       cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
 
     .control-button-dark:hover {
@@ -187,7 +179,6 @@
       cursor: pointer;
     }
 
-    /* Infinity loop style */
     #loop-btn svg {
       fill: none;
       stroke: #ccc;
@@ -199,9 +190,8 @@
       transition: stroke 0.3s ease;
     }
 
-    /* Active animation */
     #loop-btn.active svg {
-      stroke: #10b981; /* green */
+      stroke: #10b981;
       animation: loopAnim 2s linear infinite;
     }
 
@@ -209,26 +199,38 @@
       from { stroke-dashoffset: 0; }
       to   { stroke-dashoffset: -120; }
     }
+
+    .add-queue-btn {
+      display: block;
+      margin: 10px auto;
+      padding: 8px 15px;
+      border-radius: 20px;
+      border: none;
+      background: #1db954;
+      color: #fff;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .add-queue-btn:hover {
+      background: #17a74a;
+    }
   </style>
 </head>
 <body>
   <div class="player">
 
-    <!-- Leo text above the cover -->
     <img src="leo.png" alt="leo" class="leo-text">
 
-    <!-- Album cover -->
     <div class="cover">
       <img src="music-cover.png" alt="Lion Cover" class="lion">
     </div>
 
-    <!-- Song Info -->
     <div class="song-info">
-      <h2> LEO </h2>
+      <h2>LEO</h2>
       <p id="song-artist">Jimi Hendrix – Woodstock</p>
     </div>
 
-    <!-- Progress Bar -->
     <div class="progress">
       <input type="range" id="progress" value="0">
     </div>
@@ -238,7 +240,8 @@
       <div id="suggestions" class="suggestions"></div>
     </div>
 
-    <!-- Controls -->
+    <button class="add-queue-btn" onclick="addCurrentSongToQueue()">➕ Add Current Song to Queue</button>
+
     <div class="media-controls-container-dark">
       <button class="control-button-dark prev-btn-dark">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -246,7 +249,6 @@
         </svg>
       </button>
 
-      <!-- Infinity loop button -->
       <button class="control-button-dark loop-btn-dark" id="loop-btn">
         <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
           <path d="M14 24c0-5 4-9 9-9s9 4 9 9-4 9-9 9-9-4-9-9zm18 0c0-5-4-9-9-9s-9 4-9 9 4 9 9 9 9-4 9-9z"/>
@@ -269,10 +271,8 @@
       </button>
     </div>
 
-    <!-- Audio -->
     <audio id="audio" src="Meri_Banogi_kya-Rito_Riba.mp3"></audio>
 
-    <!-- Queue Display -->
     <div class="queue" id="queue-container">
       <h3>Queue</h3>
       <div id="queue-list"></div>
@@ -280,7 +280,6 @@
   </div>
 
   <script>
-    // Songs list
     const songs = [
       "Meri_Banogi_kya-Rito_Riba.mp3",
       "DARK-NIGHT-FUNK.m4a.webm",
@@ -316,7 +315,6 @@
     const queueContainer = document.getElementById("queue-list");
     const queue = [];
 
-    // Load a song
     function loadSong(index) {
       currentSongIndex = (index + songs.length) % songs.length;
       audio.src = songs[currentSongIndex];
@@ -324,7 +322,6 @@
       audio.play();
     }
 
-    // Update song info
     function updateSongInfo() {
       const fullPath = audio.src;
       const filename = fullPath.split("/").pop();
@@ -333,7 +330,6 @@
       songArtist.textContent = nameWithoutExt;
     }
 
-    // Suggestions
     function showSuggestions(query) {
       const suggestionsBox = document.getElementById("suggestions");
       suggestionsBox.innerHTML = "";
@@ -355,7 +351,6 @@
       document.getElementById("suggestions").innerHTML = "";
     }
 
-    // Play/Pause button
     playPauseBtn.addEventListener("click", () => {
       if (audio.paused) {
         audio.play();
@@ -367,7 +362,6 @@
     audio.addEventListener("play", () => playPauseBtn.classList.add("playing"));
     audio.addEventListener("pause", () => playPauseBtn.classList.remove("playing"));
 
-    // Progress bar update
     function updateProgressBar() {
       const value = (audio.currentTime / audio.duration) * 100 || 0;
       progressBar.value = value;
@@ -380,7 +374,6 @@
       audio.currentTime = (progressBar.value / 100) * audio.duration;
     });
 
-    // Prev / Next
     prevBtn.addEventListener("click", () => loadSong(currentSongIndex - 1));
     nextBtn.addEventListener("click", () => {
       if (queue.length > 0) {
@@ -391,7 +384,6 @@
       }
     });
 
-    // Queue functions
     function addToQueue(song) {
       if (!queue.includes(song)) {
         queue.push(song);
@@ -399,12 +391,16 @@
       }
     }
 
+    function addCurrentSongToQueue() {
+      addToQueue(songs[currentSongIndex]);
+    }
+
     function updateQueueDisplay() {
       queueContainer.innerHTML = "";
       queue.forEach((song, index) => {
         const queueItem = document.createElement("div");
         queueItem.classList.add("queue-item");
-        queueItem.innerHTML = `${song} <span class="remove-btn" onclick="removeFromQueue(${index})">Remove</span>`;
+        queueItem.innerHTML = `${song} <span class="remove-btn" onclick="removeFromQueue(${index})">❌</span>`;
         queueContainer.appendChild(queueItem);
       });
     }
@@ -423,7 +419,6 @@
       }
     });
 
-    // Loop functionality
     loopBtn.addEventListener("click", () => {
       isLooping = !isLooping;
       loopBtn.classList.toggle("active", isLooping);
