@@ -235,7 +235,7 @@
       <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z"/>
     </svg>
   </button>
-      <button class="control-button-dark loop-btn-dark" id="loop-btn">
+      <button class="control-button-dark loop-btn-dark">
   <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.82 10.99A4.5 4.5 0 0118 18.5m-15.111-2.99a4.5 4.5 0 01-1.385-5.516l1.242-.96a1 1 0 011.666 1.042 6.5 6.5 0 0010.59-1.996l.732-2.147a1 1 0 011.666 1.042l-1.242.96a4.5 4.5 0 01-1.385 5.516l-.821.636a1 1 0 01-1.666-1.042z"></path>
   </svg>
@@ -299,7 +299,7 @@
   const songArtist = document.getElementById("song-artist"); 
   const prevBtn = document.querySelector(".prev-btn-dark");
   const nextBtn = document.querySelector(".next-btn-dark");
-  const loopBtn = document.getElementById("loop-btn");
+  const loopBtn = document.querySelector("lloop-btn-dark");
   const queueContainer = document.getElementById("queue-list");
 
   // Load a song
@@ -447,6 +447,7 @@
   </script>
 </body>
 </html>
+
 
 
 
