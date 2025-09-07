@@ -43,12 +43,13 @@
       object-fit: cover;
       display: block;
     }
-    /* Leo text now separate */
-.leo-text {
-  display: block;
-  margin: 10px auto 10px; /* centers it above cover */
-  width: 120px;        /* adjust as needed */
-}
+
+    /* Leo text above cover */
+    .leo-text {
+      display: block;
+      margin: 10px auto 10px;
+      width: 120px;
+    }
 
     .song-info h2 {
       margin: 5px 0;
@@ -73,104 +74,93 @@
       width: 100%;
       height: 6px;
       border-radius: 5px;
-      background: #ccc;
+      background: linear-gradient(to right, #1db954 0%, #1db954 0%, #ccc 0%, #ccc 100%);
       outline: none;
     }
 
-    .progress input[type=range] {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 6px;
-  border-radius: 5px;
-  background: linear-gradient(to right, #1db954 0%, #1db954 0%, #ccc 0%, #ccc 100%);
-  outline: none;
-}
+    .media-controls-container-dark {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      padding: 10px 0;
+      background: transparent;
+      backdrop-filter: none;
+      border-radius: 0;
+      border: none;
+      box-shadow: none;
+    }
 
-    
-.media-controls-container-dark {
-  display: flex;
-  justify-content: center; /* Centers the buttons horizontally */
-  align-items: center;
-  gap: 20px;
-  padding: 10px 0; /* Adjusts the padding to be a small vertical buffer */
-  background: transparent; /* Removes the background color */
-  backdrop-filter: none; /* Removes the blur effect */
-  border-radius: 0;
-  border: none;
-  box-shadow: none; /* Removes the box shadow */
-}
+    .control-button-dark {
+      width: 60px;
+      height: 60px;
+      border: none;
+      border-radius: 50%;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
 
-.control-button-dark {
-  width: 60px;
-  height: 60px;
-  border: none;
-  border-radius: 50%;
-  color: #fff;
-  background: rgba(255, 255, 255, 0.1);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
+    .control-button-dark:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
 
-.control-button-dark:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
+    .control-button-dark:active {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(0.95);
+    }
 
-.control-button-dark:active {
-  background: rgba(255, 255, 255, 0.3);
-  transform: scale(0.95);
-}
+    .control-button-dark svg {
+      fill: currentColor;
+      width: 24px;
+      height: 24px;
+    }
 
-.control-button-dark svg {
-  fill: currentColor;
-  width: 24px;
-  height: 24px;
-}
+    .play-pause-btn-dark .icon-play { transform: scale(1); }
+    .play-pause-btn-dark .icon-pause { transform: scale(0); }
+    .play-pause-btn-dark.playing .icon-play { transform: scale(0); }
+    .play-pause-btn-dark.playing .icon-pause { transform: scale(1); }
 
-.play-pause-btn-dark .icon-play { transform: scale(1); }
-.play-pause-btn-dark .icon-pause { transform: scale(0); }
-.play-pause-btn-dark.playing .icon-play { transform: scale(0); }
-.play-pause-btn-dark.playing .icon-pause { transform: scale(1); }
+    .search-box {
+      margin-bottom: 10px;
+      text-align: center;
+      position: relative;
+    }
 
-.search-box {
-  margin-bottom: 10px;
-  text-align: center;
-  position: relative;
-}
+    .search-box input {
+      width: 250px;
+      padding: 8px;
+      border-radius: 80px;
+      border: 4px solid #232020f3;
+      outline: none;
+    }
 
-.search-box input {
-  width: 250px;
-  padding: 8px;
-  border-radius: 80px;
-  border: 4px solid #232020f3;
-  outline: none;
-}
+    .suggestions {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      background: #000000;
+      border-radius: 0 0 7px 7px;
+      max-height: 150px;
+      overflow-y: auto;
+      z-index: 1000;
+    }
 
-.suggestions {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 200px;
-  background: #000000;
-  border: 0px solid #ddd;
-  border-radius: 0 0 7px 7px;
-  max-height: 150px;
-  overflow-y: auto;
-  z-index: 1000;
-}
+    .suggestion-item {
+      padding: 6px;
+      cursor: pointer;
+    }
 
-.suggestion-item {
-  padding: 6px;
-  cursor: pointer;
-}
-
-.suggestion-item:hover {
-  background: #ffffff;
-  color: rgb(0, 0, 0);
-}
+    .suggestion-item:hover {
+      background: #ffffff;
+      color: rgb(0, 0, 0);
+    }
 
     .queue {
       margin-top: 20px;
@@ -197,30 +187,40 @@
       cursor: pointer;
     }
 
-     #loop-btn svg {
-    fill: none;
-    stroke: currentColor;
-  }
+    /* Infinity loop style */
+    #loop-btn svg {
+      fill: none;
+      stroke: #ccc;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 120;
+      stroke-dashoffset: 0;
+      transition: stroke 0.3s ease;
+    }
 
-  /* Active (clicked) state */
-  #loop-btn.active svg {
-    fill: green;
-    stroke: white;
-  }
+    /* Active animation */
+    #loop-btn.active svg {
+      stroke: #10b981; /* green */
+      animation: loopAnim 2s linear infinite;
+    }
 
+    @keyframes loopAnim {
+      from { stroke-dashoffset: 0; }
+      to   { stroke-dashoffset: -120; }
+    }
   </style>
 </head>
 <body>
   <div class="player">
 
     <!-- Leo text above the cover -->
-<img src="leo.png" alt="leo" class="leo-text">
+    <img src="leo.png" alt="leo" class="leo-text">
 
-<!-- Album cover -->
-<div class="cover">
-  <img src="music-cover.png" alt="Lion Cover" class="lion">
-</div>
-
+    <!-- Album cover -->
+    <div class="cover">
+      <img src="music-cover.png" alt="Lion Cover" class="lion">
+    </div>
 
     <!-- Song Info -->
     <div class="song-info">
@@ -234,43 +234,45 @@
     </div>
 
     <div class="search-box">
-  <input type="text" id="song-search" placeholder="Search songs..." oninput="showSuggestions(this.value)">
-  <div id="suggestions" class="suggestions"></div>
-</div>
-
+      <input type="text" id="song-search" placeholder="Search songs..." oninput="showSuggestions(this.value)">
+      <div id="suggestions" class="suggestions"></div>
+    </div>
 
     <!-- Controls -->
     <div class="media-controls-container-dark">
-  <button class="control-button-dark prev-btn-dark">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z"/>
-    </svg>
-  </button>
-      <button class="control-button-dark loop-btn-dark" id="loop-btn">
-  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.82 10.99A4.5 4.5 0 0118 18.5m-15.111-2.99a4.5 4.5 0 01-1.385-5.516l1.242-.96a1 1 0 011.666 1.042 6.5 6.5 0 0010.59-1.996l.732-2.147a1 1 0 011.666 1.042l-1.242.96a4.5 4.5 0 01-1.385 5.516l-.821.636a1 1 0 01-1.666-1.042z"></path>
-  </svg>
-</button>
-  <button class="control-button-dark play-pause-btn-dark" id="play-pause-button" aria-label="Play/Pause">
-  <svg class="icon-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    <path d="M8 5v14l11-7z"/>
-  </svg>
-  <svg class="icon-pause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="display: none;">
-    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-  </svg>
-  </button>
-  <button class="control-button-dark next-btn-dark">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <path d="M8.59 16.59L13.17 12l-4.58-4.59L10 6l6 6-6 6z"/>
-    </svg>
-  </button>
-</div>
+      <button class="control-button-dark prev-btn-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z"/>
+        </svg>
+      </button>
 
+      <!-- Infinity loop button -->
+      <button class="control-button-dark loop-btn-dark" id="loop-btn">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+          <path d="M14 24c0-5 4-9 9-9s9 4 9 9-4 9-9 9-9-4-9-9zm18 0c0-5-4-9-9-9s-9 4-9 9 4 9 9 9 9-4 9-9z"/>
+        </svg>
+      </button>
+
+      <button class="control-button-dark play-pause-btn-dark" id="play-pause-button" aria-label="Play/Pause">
+        <svg class="icon-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+        <svg class="icon-pause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="display: none;">
+          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+        </svg>
+      </button>
+
+      <button class="control-button-dark next-btn-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M8.59 16.59L13.17 12l-4.58-4.59L10 6l6 6-6 6z"/>
+        </svg>
+      </button>
+    </div>
 
     <!-- Audio -->
-    <audio id="audio" src="Meri_Banogi_kya-Rito_Riba.mp3" ></audio>
+    <audio id="audio" src="Meri_Banogi_kya-Rito_Riba.mp3"></audio>
 
-     <!-- Queue Display -->
+    <!-- Queue Display -->
     <div class="queue" id="queue-container">
       <h3>Queue</h3>
       <div id="queue-list"></div>
@@ -278,122 +280,118 @@
   </div>
 
   <script>
-  // Songs list (replace with your actual song file names)
-  const songs = [
-    "Meri_Banogi_kya-Rito_Riba.mp3",
-"DARK-NIGHT-FUNK.m4a.webm",
-"MONTAGEM-ALUCINANTE-Rushex-Dj-Orbital.m4a.mp3",
-"No-Signal.m4a.webm",
-"SHOORVEER-3-A-Tribute-to-छत-रपत-श-व-ज-मह-र-ज.m4a.mp3",
-"SHOORVEER-Tribute-to-छत-रपत-स-भ-ज-मह-र-ज-CHHAAVA-I-Rapperiya.m4a.mp3",
-"Bhaag-Milkha-Bhaag-Rock-Version.m4a.mp3",
-"Rang-Jo-Lagyo-Ramaiya-Vastavaiya.m4a.mp3",
-"52-Bars_karan_aujilah.m4a.mp3",
-"Red-Sex-Re-Strung.m4a.mp3",
-"Sahiba_Aditya.m4a.mp3",
-"Zaalima.m4a.mp3",
-"Raabta_Arijit_singh.m4a.mp3",
-"Kabira_pritam.m4a.mp3",
-"Othaiyadi-Pathayila-.m4a.mp3",
-"Parro_Aditya_Rikhari.m4a.mp3",
-"Wishes-ft-Talwiinder.m4a.mp3",
-"Labrinth-Mount-Everest.m4a.mp3",
-"One_of_the_girls-WEEKND.mp3",
-"Out_of_Time_The_Weeknd.mp3"
-  ];
+    // Songs list
+    const songs = [
+      "Meri_Banogi_kya-Rito_Riba.mp3",
+      "DARK-NIGHT-FUNK.m4a.webm",
+      "MONTAGEM-ALUCINANTE-Rushex-Dj-Orbital.m4a.mp3",
+      "No-Signal.m4a.webm",
+      "SHOORVEER-3-A-Tribute-to-छत-रपत-श-व-ज-मह-र-ज.m4a.mp3",
+      "SHOORVEER-Tribute-to-छत-रपत-स-भ-ज-मह-र-ज-CHHAAVA-I-Rapperiya.m4a.mp3",
+      "Bhaag-Milkha-Bhaag-Rock-Version.m4a.mp3",
+      "Rang-Jo-Lagyo-Ramaiya-Vastavaiya.m4a.mp3",
+      "52-Bars_karan_aujilah.m4a.mp3",
+      "Red-Sex-Re-Strung.m4a.mp3",
+      "Sahiba_Aditya.m4a.mp3",
+      "Zaalima.m4a.mp3",
+      "Raabta_Arijit_singh.m4a.mp3",
+      "Kabira_pritam.m4a.mp3",
+      "Othaiyadi-Pathayila-.m4a.mp3",
+      "Parro_Aditya_Rikhari.m4a.mp3",
+      "Wishes-ft-Talwiinder.m4a.mp3",
+      "Labrinth-Mount-Everest.m4a.mp3",
+      "One_of_the_girls-WEEKND.mp3",
+      "Out_of_Time_The_Weeknd.mp3"
+    ];
 
-  let currentSongIndex = 0;
+    let currentSongIndex = 0;
     let isLooping = false;
+    const audio = document.getElementById("audio");
+    const playPauseBtn = document.getElementById("play-pause-button");
+    const progressBar = document.getElementById("progress");
+    const songArtist = document.getElementById("song-artist"); 
+    const prevBtn = document.querySelector(".prev-btn-dark");
+    const nextBtn = document.querySelector(".next-btn-dark");
+    const loopBtn = document.getElementById("loop-btn");
+    const queueContainer = document.getElementById("queue-list");
+    const queue = [];
 
-  const audio = document.getElementById("audio");
-  const playPauseBtn = document.getElementById("play-pause-button");
-  const progressBar = document.getElementById("progress");
-  const songArtist = document.getElementById("song-artist"); 
-  const prevBtn = document.querySelector(".prev-btn-dark");
-  const nextBtn = document.querySelector(".next-btn-dark");
-  const loopBtn = document.getElementById("loop-btn");
-  const queueContainer = document.getElementById("queue-list");
-
-  // Load a song
-  function loadSong(index) {
-    currentSongIndex = (index + songs.length) % songs.length; // wrap around
-    audio.src = songs[currentSongIndex];
-    updateSongInfo();
-    audio.play();
-  }
-
-  // Song info updater
-  function updateSongInfo() {
-    const fullPath = audio.src;
-    const filename = fullPath.split("/").pop();
-    const decodedName = decodeURIComponent(filename);
-    const nameWithoutExt = decodedName.split(".").slice(0, -1).join(".");
-    songArtist.textContent = nameWithoutExt;
-  }
-
-  // Suggestions
-  function showSuggestions(query) {
-    const suggestionsBox = document.getElementById("suggestions");
-    suggestionsBox.innerHTML = "";
-    if (!query) return;
-
-    const matches = songs.filter(song =>
-      song.toLowerCase().includes(query.toLowerCase())
-    );
-
-    matches.forEach(song => {
-      const div = document.createElement("div");
-      div.classList.add("suggestion-item");
-      div.textContent = song;
-      div.onclick = () => selectSong(song);
-      suggestionsBox.appendChild(div);
-    });
-  }
-
-  function selectSong(song) {
-    currentSongIndex = songs.indexOf(song);
-    loadSong(currentSongIndex);
-    document.getElementById("song-search").value = song;
-    document.getElementById("suggestions").innerHTML = "";
-  }
-
-  // Play / Pause button
-  playPauseBtn.addEventListener("click", () => {
-    if (audio.paused) {
+    // Load a song
+    function loadSong(index) {
+      currentSongIndex = (index + songs.length) % songs.length;
+      audio.src = songs[currentSongIndex];
+      updateSongInfo();
       audio.play();
-    } else {
-      audio.pause();
     }
-  });
 
-  audio.addEventListener("play", () => playPauseBtn.classList.add("playing"));
-  audio.addEventListener("pause", () => playPauseBtn.classList.remove("playing"));
+    // Update song info
+    function updateSongInfo() {
+      const fullPath = audio.src;
+      const filename = fullPath.split("/").pop();
+      const decodedName = decodeURIComponent(filename);
+      const nameWithoutExt = decodedName.split(".").slice(0, -1).join(".");
+      songArtist.textContent = nameWithoutExt;
+    }
 
-  // Progress bar update
-  function updateProgressBar() {
-    const value = (audio.currentTime / audio.duration) * 100 || 0;
-    progressBar.value = value;
-    progressBar.style.background = `linear-gradient(to right, #1db954 ${value}%, #ccc ${value}%)`;
-  }
+    // Suggestions
+    function showSuggestions(query) {
+      const suggestionsBox = document.getElementById("suggestions");
+      suggestionsBox.innerHTML = "";
+      if (!query) return;
+      const matches = songs.filter(song => song.toLowerCase().includes(query.toLowerCase()));
+      matches.forEach(song => {
+        const div = document.createElement("div");
+        div.classList.add("suggestion-item");
+        div.textContent = song;
+        div.onclick = () => selectSong(song);
+        suggestionsBox.appendChild(div);
+      });
+    }
 
-  audio.addEventListener("timeupdate", updateProgressBar);
+    function selectSong(song) {
+      currentSongIndex = songs.indexOf(song);
+      loadSong(currentSongIndex);
+      document.getElementById("song-search").value = song;
+      document.getElementById("suggestions").innerHTML = "";
+    }
 
-  progressBar.addEventListener("input", () => {
-    audio.currentTime = (progressBar.value / 100) * audio.duration;
-  });
-
-  // Prev / Next buttons
-  prevBtn.addEventListener("click", () => loadSong(currentSongIndex - 1));
- nextBtn.addEventListener("click", () => {
-      if (queue.length > 0) {
-        loadSong(songs.indexOf(queue.shift()));  // Get song from queue and remove it
-        updateQueueDisplay();
+    // Play/Pause button
+    playPauseBtn.addEventListener("click", () => {
+      if (audio.paused) {
+        audio.play();
       } else {
-        loadSong(currentSongIndex + 1);  // Play the next song normally
+        audio.pause();
       }
     });
 
-    // Add song to queue
+    audio.addEventListener("play", () => playPauseBtn.classList.add("playing"));
+    audio.addEventListener("pause", () => playPauseBtn.classList.remove("playing"));
+
+    // Progress bar update
+    function updateProgressBar() {
+      const value = (audio.currentTime / audio.duration) * 100 || 0;
+      progressBar.value = value;
+      progressBar.style.background = `linear-gradient(to right, #1db954 ${value}%, #ccc ${value}%)`;
+    }
+
+    audio.addEventListener("timeupdate", updateProgressBar);
+
+    progressBar.addEventListener("input", () => {
+      audio.currentTime = (progressBar.value / 100) * audio.duration;
+    });
+
+    // Prev / Next
+    prevBtn.addEventListener("click", () => loadSong(currentSongIndex - 1));
+    nextBtn.addEventListener("click", () => {
+      if (queue.length > 0) {
+        loadSong(songs.indexOf(queue.shift()));
+        updateQueueDisplay();
+      } else {
+        loadSong(currentSongIndex + 1);
+      }
+    });
+
+    // Queue functions
     function addToQueue(song) {
       if (!queue.includes(song)) {
         queue.push(song);
@@ -401,7 +399,6 @@
       }
     }
 
-    // Update the queue display
     function updateQueueDisplay() {
       queueContainer.innerHTML = "";
       queue.forEach((song, index) => {
@@ -412,35 +409,26 @@
       });
     }
 
-    // Remove song from queue
     function removeFromQueue(index) {
       queue.splice(index, 1);
       updateQueueDisplay();
     }
 
-    // Add song to queue when song ends
     audio.addEventListener("ended", () => {
       if (queue.length > 0) {
-        loadSong(songs.indexOf(queue.shift()));  // Play next song in queue
+        loadSong(songs.indexOf(queue.shift()));
         updateQueueDisplay();
       } else {
-        loadSong(currentSongIndex + 1);  // Normal behavior if queue is empty
+        loadSong(currentSongIndex + 1);
       }
     });
-   
-  // Loop functionality
-loopBtn.addEventListener("click", () => {
-  isLooping = !isLooping;
-  loopBtn.classList.toggle("active", isLooping); // ✅ toggles green on/off
 
-  if (isLooping) {
-    audio.loop = true; // 🔥 much simpler than adding listeners
-  } else {
-    audio.loop = false;
-  }
-});
+    // Loop functionality
+    loopBtn.addEventListener("click", () => {
+      isLooping = !isLooping;
+      loopBtn.classList.toggle("active", isLooping);
+      audio.loop = isLooping;
+    });
   </script>
 </body>
 </html>
-
-
